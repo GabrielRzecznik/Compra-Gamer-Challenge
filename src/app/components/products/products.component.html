@@ -1,0 +1,21 @@
+<div *ngFor="let producto of productos">
+  <mat-card class="card">
+    <div class="card-content">
+      <div class="image-container">
+        <img [src]="producto.imagenes[0]" alt="Imagen del producto">
+      </div>
+      <div class="product-info col-9">
+        <h3>{{ producto.nombre }}</h3>
+        <p>Precio: ${{ producto.precio }}</p>
+        <p>Garantía: {{ producto.garantia }} meses</p>
+        <p>Stock: {{producto.stock}}.</p>
+      </div>
+      <button mat-flat-button class="shopping_cart" (click)="addProduct(producto)">
+        <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
+        <span class="button-flat-text">
+            Agrégar
+        </span>
+      </button>
+    </div>
+  </mat-card>
+</div>

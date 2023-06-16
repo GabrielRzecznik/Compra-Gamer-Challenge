@@ -1,0 +1,70 @@
+.logo_cg{
+    height: 50px;
+}
+
+.nav-cg{
+    background-color: rgb(10, 10, 10);
+    padding: 10px;
+}
+
+.nav-icons{
+    color: white;
+}
+
+.button-right{
+    margin-top: 8px;
+    margin-left: 10px;
+    float: right;
+    background-color: rgb(40, 40, 40)
+}
+
+.computer-border {
+    position: relative;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+  
+.computer-border::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    animation: computer-border-animation 10s infinite linear;
+}
+  
+@keyframes computer-border-animation {
+    0% {
+      background-color: red;
+    }
+    14% {
+      background-color: orange;
+    }
+    28% {
+      background-color: yellow;
+    }
+    42% {
+      background-color: rgb(123, 231, 0);
+    }
+    57% {
+      background-color: rgb(0, 110, 255);
+    }
+    71% {
+      background-color: rgb(149, 70, 214);
+    }
+    85% {
+      background-color: violet;
+    }
+    100% {
+      background-color: red;
+    }
+}
+  
+.example-card {
+    max-width: 400px;
+}
+  
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}

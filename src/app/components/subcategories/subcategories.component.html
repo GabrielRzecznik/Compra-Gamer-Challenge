@@ -1,0 +1,14 @@
+<mat-accordion class="custom-accordion">
+  <mat-expansion-panel *ngFor="let categoria of categorias">
+    <mat-expansion-panel-header>
+      {{ categoria.nombre }}
+    </mat-expansion-panel-header>
+    <br>
+    <ng-container *ngFor="let subcategoria of subcategorias">
+      <h5 class="subcategoria" *ngIf="subcategoria.id_agrupador === categoria.id" (click)="filter(subcategoria)">
+        {{ subcategoria.nombre }}
+        <!--<img [src]="subcategoria.imagen"> Los documentos no existen-->
+      </h5>
+    </ng-container>
+  </mat-expansion-panel>
+</mat-accordion>
