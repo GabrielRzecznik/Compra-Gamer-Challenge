@@ -5,8 +5,8 @@
             <button mat-raised-button>
                 <mat-icon class="nav-icons" matBadgePosition="above after">shopping_cart</mat-icon>Carrito
             </button>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                2
+            <span *ngIf="cartProductCount != 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ cartProductCount }}
             </span>
         </span>
     </div>    

@@ -1,21 +1,25 @@
+<div *ngIf="spinner" class="spinner"></div>
+
 <div *ngFor="let producto of productos">
   <mat-card class="card">
     <div class="card-content">
       <div class="image-container">
-        <img [src]="producto.imagenes[0]" alt="Imagen del producto">
+        <img src="{{ imgURL+producto.imagenes[0].nombre+imgJpg }}" alt="Imagen del producto">
       </div>
-      <div class="product-info col-9">
+      <div class="product-info">
         <h3>{{ producto.nombre }}</h3>
         <p>Precio: ${{ producto.precio }}</p>
         <p>Garantía: {{ producto.garantia }} meses</p>
-        <p>Stock: {{producto.stock}}.</p>
+        <p>Stock: {{ producto.stock }}.</p>
       </div>
-      <button mat-flat-button class="shopping_cart" (click)="addProduct(producto)">
-        <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
-        <span class="button-flat-text">
-            Agrégar
-        </span>
-      </button>
+      <span class="shopping-cart">
+        <button class="btnShopping-cart" mat-flat-button (click)="addProduct(producto)">
+          <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
+          <span class="button-flat-text">
+            Agregar
+          </span>
+        </button>
+      </span>
     </div>
   </mat-card>
 </div>

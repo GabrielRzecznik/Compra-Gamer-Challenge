@@ -1,0 +1,15 @@
+.banner{
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 4.5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.title{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    padding: 20px;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+}

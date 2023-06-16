@@ -2,7 +2,14 @@
   cursor: pointer;
 }
 
+.custom-accordion-container{
+  position: sticky;
+  top: 20px;
+
+}
+
 .custom-accordion .mat-expansion-panel-header {
+    font-family: 'Poppins', sans-serif;
     background-color: rgb(10, 10, 10);
     color: #fff;
     transition: background-color 0.3s ease;
@@ -39,4 +46,10 @@
     100% {
       color: red;
     }
+}
+
+.btnScroll{
+  margin-top: 15px;
+  width: 100%;
+  transition: opacity 0.3s ease;
 }

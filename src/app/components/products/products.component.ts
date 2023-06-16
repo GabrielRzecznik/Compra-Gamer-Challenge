@@ -9,19 +9,24 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 
 export class ProductsComponent implements OnInit {
+  public spinner: boolean = true;
   productos: any[] = [];
   productosFilter: any[] = [];
   id_subCategoria: number = 0;
   existence = true;
+  imgURL = "https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_";
+  imgJpg = ".jpg";
+  shoppingCar: any[] = [];
   
   constructor(private apiCompraGamerService: ApiCompraGamerService, private FilterService: FilterService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getProductos();
     this.getFilter();
   }
 
-  getProductos() {
+  private getProductos() {
+    this.spinner = true;
     if (this.id_subCategoria == 0) {
       this.apiCompraGamerService.getProductos().subscribe(
         (productos) => {
@@ -46,10 +51,19 @@ export class ProductsComponent implements OnInit {
         }
       );
     }
+    this.spinner = false;
   }
 
   addProduct(producto: string[]) {
-    console.log(producto);
+    const existingCartData = localStorage.getItem('shoppingCar');
+    let shoppingCar: string[] = [];
+  
+    if (existingCartData) {
+      shoppingCar = JSON.parse(existingCartData);
+    }
+  
+    shoppingCar = shoppingCar.concat(producto);
+    localStorage.setItem('shoppingCar', JSON.stringify(shoppingCar));
   }
 
   getFilter(){
@@ -58,5 +72,4 @@ export class ProductsComponent implements OnInit {
       this.getProductos();
     });
   };
-
 }
