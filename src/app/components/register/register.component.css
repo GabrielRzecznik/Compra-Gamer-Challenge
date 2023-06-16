@@ -1,0 +1,80 @@
+.button-record{
+    background-color: #666666;
+}
+
+.center{
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+}
+
+.margin-bottom{
+    margin-bottom: 10px;
+}
+
+.width-full {
+    width: 100%;
+}
+
+.record-visibility{
+    display: none;
+}
+
+.computer-border::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    animation: computer-border-animation 10s infinite linear;
+}
+  
+@keyframes computer-border-animation {
+    0% {
+      background-color: red;
+    }
+    14% {
+      background-color: orange;
+    }
+    28% {
+      background-color: yellow;
+    }
+    42% {
+      background-color: rgb(123, 231, 0);
+    }
+    57% {
+      background-color: rgb(0, 110, 255);
+    }
+    71% {
+      background-color: rgb(149, 70, 214);
+    }
+    85% {
+      background-color: violet;
+    }
+    100% {
+      background-color: red;
+    }
+}
+  
+.example-card {
+    max-width: 400px;
+  }
+  
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.spacing{
+    margin-top: 45px;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+
+.top-spacing{
+    margin-top: 20px;
+}
+

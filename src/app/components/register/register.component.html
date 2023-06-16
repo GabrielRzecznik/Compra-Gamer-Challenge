@@ -1,0 +1,77 @@
+
+<h2 class="center top-spacing">{{ title }}</h2>
+
+<span class="computer-border">
+
+  <mat-dialog-content class="mat-typography">
+    
+    <!--Iniciar Sesión-->
+    <span *ngIf="showLogin">
+      <form class="form-record">
+        <mat-form-field appearance="fill" class="example-full-width mat-warn">
+          <mat-label>Email</mat-label>
+          <input matInput type="email-login" placeholder="Ingrese su emial">
+        </mat-form-field>
+        <mat-form-field class="example-full-width mat-warn">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Ingrese su contraseña">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </span>
+    <!--Registrarse-->
+    <span *ngIf="showRecord">
+      <form class="form-record">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="example-full-width mat-warn">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="nombre" placeholder="Ingrese su nombre">
+        </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="example-full-width mat-warn">
+              <mat-label>Apellido</mat-label>
+              <input matInput type="apellido" placeholder="Ingrese su apellido">
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-form-field appearance="fill" class="example-full-width mat-warn">
+          <mat-label>DNI</mat-label>
+          <input matInput type="dni" placeholder="Ingrese su DNI">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="example-full-width mat-warn">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Ingrese su emial">
+        </mat-form-field>
+        <mat-form-field class="example-full-width mat-warn">
+          <mat-label>Teléfono</mat-label>
+          <span matPrefix>+54 &nbsp;</span>
+          <input type="tel" matInput placeholder="011-1111-1111">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width mat-warn">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Ingrese una contraseña">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </span>
+    
+
+
+
+
+    <br>
+  </mat-dialog-content>
+  <mat-dialog-actions class="margin-bottom" align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button class="button-record" mat-flat-button (click)="changeForm()">{{ textButton }}</button>
+
+    <button mat-flat-button color="warn" [mat-dialog-close]="true" >Continuar</button>
+  </mat-dialog-actions>
+</span>
