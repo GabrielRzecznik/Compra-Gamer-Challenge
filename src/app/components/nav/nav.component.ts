@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ShoppingCartCounterService } from 'src/app/services/shopping-cart-counter.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   cartProductCount: number = 0;
-  cartProduct: any[] = [];
 
-  constructor() {
-    const cartData = localStorage.getItem('shoppingCar');
-    if (cartData) {
-      this.cartProduct = JSON.parse(cartData);
-    }
-    this.cartProductCount = this.cartProduct.length;
-    console.log("Número de objetos: ", this.cartProductCount);
+  constructor(private shoppingCartCounterService: ShoppingCartCounterService) {}
+
+  public ngOnInit() {
+    this.shoppingCartCounterService.subscriptionProduct().subscribe({
+      next:(counter) => {
+        this.cartProductCount = counter;
+        
+      }
+    });
   }
 }

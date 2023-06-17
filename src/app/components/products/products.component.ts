@@ -1,6 +1,8 @@
 import { Component, NgModule, OnInit } from '@angular/core';
+import { Product } from 'src/app/interfaces/product.interface';
 import { ApiCompraGamerService } from 'src/app/services/api-compra-gamer.service';
 import { FilterService } from 'src/app/services/filter.service';
+import { ShoppingCartCounterService } from 'src/app/services/shopping-cart-counter.service';
 
 @Component({
   selector: 'app-products',
@@ -10,15 +12,15 @@ import { FilterService } from 'src/app/services/filter.service';
 
 export class ProductsComponent implements OnInit {
   public spinner: boolean = true;
-  productos: any[] = [];
-  productosFilter: any[] = [];
+  productos: Product[] = [];
+  productosFilter: Product[] = [];
   id_subCategoria: number = 0;
   existence = true;
   imgURL = "https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_";
   imgJpg = ".jpg";
-  shoppingCar: any[] = [];
+  countProduct: number = 0;
   
-  constructor(private apiCompraGamerService: ApiCompraGamerService, private FilterService: FilterService) { }
+  constructor(private apiCompraGamerService: ApiCompraGamerService, private FilterService: FilterService, private shoppingCartCounterService: ShoppingCartCounterService) { }
 
   public ngOnInit() {
     this.getProductos();
@@ -54,19 +56,11 @@ export class ProductsComponent implements OnInit {
     this.spinner = false;
   }
 
-  addProduct(producto: string[]) {
-    const existingCartData = localStorage.getItem('shoppingCar');
-    let shoppingCar: string[] = [];
-  
-    if (existingCartData) {
-      shoppingCar = JSON.parse(existingCartData);
-    }
-  
-    shoppingCar = shoppingCar.concat(producto);
-    localStorage.setItem('shoppingCar', JSON.stringify(shoppingCar));
+  public addProduct(product: Product) {//Objeto de producto
+    this.shoppingCartCounterService.addProduct(product);
   }
 
-  getFilter(){
+  private getFilter(){
     this.FilterService.id_subCategoria$.subscribe((id_subCategoria) => {
       this.id_subCategoria = id_subCategoria;
       this.getProductos();
