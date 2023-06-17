@@ -1,25 +1,33 @@
-<div *ngIf="spinner" class="spinner"></div>
-
-<div *ngFor="let producto of productos">
-  <mat-card class="card">
-    <div class="card-content">
-      <div class="image-container">
-        <img src="{{ imgURL+producto.imagenes[0].nombre+imgJpg }}" alt="Imagen del producto">
+<div class="row">
+  <div *ngFor="let product of products">
+    <mat-card class="card">
+      <div class="card-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-2 center">
+              <div class="image-container">
+                <img src="{{ imgURL+product.imagenes[0].nombre+imgJpg }}" alt="Imagen del producto">
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="product-info">
+                <h3>{{ product.nombre }}</h3>
+                <p>Precio: $ {{ formatPrecio(product.precio + (product.precio * (product.iva / 100))) }}</p>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <span class="shopping-cart">
+                <button class="btnShopping-cart" mat-flat-button (click)="addProduct(product)">
+                  <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
+                  <span class="button-flat-text">
+                    Agregar
+                  </span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="product-info">
-        <h3>{{ producto.nombre }}</h3>
-        <p>Precio: ${{ producto.precio }}</p>
-        <p>Garantía: {{ producto.garantia }} meses</p>
-        <p>Stock: {{ producto.stock }}.</p>
-      </div>
-      <span class="shopping-cart">
-        <button class="btnShopping-cart" mat-flat-button (click)="addProduct(producto)">
-          <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
-          <span class="button-flat-text">
-            Agregar
-          </span>
-        </button>
-      </span>
-    </div>
-  </mat-card>
+    </mat-card>
+  </div>
 </div>

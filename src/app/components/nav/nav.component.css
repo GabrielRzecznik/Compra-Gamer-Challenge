@@ -5,6 +5,7 @@
 .nav-cg{
     background-color: rgb(10, 10, 10);
     padding: 10px;
+    cursor: pointer;
 }
 
 .nav-icons{

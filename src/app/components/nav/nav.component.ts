@@ -15,7 +15,6 @@ export class NavComponent implements OnInit {
     this.shoppingCartCounterService.subscriptionProduct().subscribe({
       next:(counter) => {
         this.cartProductCount = counter;
-        
       }
     });
   }

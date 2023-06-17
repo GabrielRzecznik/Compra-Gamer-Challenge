@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Injectable } from '@angular/core';
+import { LayoutModule } from '@angular/cdk/layout';//Borrar si no sirve
 
 //Components
 import { AppComponent } from './app.component';
@@ -30,6 +30,7 @@ import { SubcategoryBannerComponent } from './components/subcategory-banner/subc
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    LayoutModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

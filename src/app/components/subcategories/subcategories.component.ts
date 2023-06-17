@@ -48,7 +48,8 @@ export class SubcategoriesComponent {
 
   public filter(subcategoria: SubCategories) {
     const numero: number = subcategoria['id'];
-    this.FilterService.enviarId_subCategoria(numero);
+    const img: string = subcategoria['imagen'];
+    this.FilterService.enviarId_subCategoria(numero, img);
   }
 
   @HostListener('window:scroll', [])
