@@ -8,6 +8,7 @@
 
 .btnShopping-cart{
   font-family: 'Poppins', sans-serif;
+  width: 100%;
 }
 
 .card {
@@ -63,10 +64,23 @@ h3 {
   margin: 0;
 }
 
-.centerNoExistence{
+.center-no-existence{
   text-align: center;
   padding: 50px;
   color: rgb(10, 10, 10);
+}
+
+.chip-subCategory{
+  margin-bottom: 10px;
+}
+
+.un-selectable{
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
 }
 
 @media (min-width: 0px) and (max-width: 991px) {

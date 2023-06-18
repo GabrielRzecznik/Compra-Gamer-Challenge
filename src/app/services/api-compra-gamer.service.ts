@@ -11,12 +11,12 @@ import { Product } from '../interfaces/product.interface';
 export class ApiCompraGamerService {
   constructor(private http: HttpClient) { }
 
-  public getSubcategorias(): Observable<SubCategories[]> {
+  public getSubcategories(): Observable<SubCategories[]> {
     const url = 'https://static.compragamer.com/test/subcategorias.json';
     return this.http.get<SubCategories[]>(url);
   }
 
-  public getProductos(): Observable<Product[]> {
+  public getProducts(): Observable<Product[]> {
     const url = 'https://static.compragamer.com/test/productos.json';
     return this.http.get<Product[]>(url);
   }

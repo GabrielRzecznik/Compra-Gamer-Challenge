@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';//Borrar si no sirve
+import {MatChipsModule} from '@angular/material/chips';
 
 //Components
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { SubcategoryBannerComponent } from './components/subcategory-banner/subc
     BrowserAnimationsModule,
     HttpClientModule,
     LayoutModule,
+    MatChipsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

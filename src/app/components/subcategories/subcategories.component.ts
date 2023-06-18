@@ -25,20 +25,20 @@ export class SubcategoriesComponent {
     { id: 6, name: 'Monitores y Televisores' }
   ];
 
-  public subcategorias: SubCategories[] = [];
+  public subcategories: SubCategories[] = [];
 
   public showScroll = false;
 
   constructor (private apiCompraGamerService: ApiCompraGamerService, private FilterService: FilterService) { }
 
   public ngOnInit() {
-    this.getSubcategorias();
+    this.getSubcategories();
   }
 
-  private getSubcategorias() {
-    this.apiCompraGamerService.getSubcategorias().subscribe(
-      (subcategorias) => {
-        this.subcategorias = subcategorias;
+  private getSubcategories() {
+    this.apiCompraGamerService.getSubcategories().subscribe(
+      (subcategories) => {
+        this.subcategories = subcategories;
       },
       (error) => {
         console.error(error);
@@ -47,9 +47,10 @@ export class SubcategoriesComponent {
   }
 
   public filter(subcategoria: SubCategories) {
-    const numero: number = subcategoria['id'];
+    const number: number = subcategoria['id'];
+    const name: string = subcategoria['nombre'];
     const img: string = subcategoria['imagen'];
-    this.FilterService.enviarId_subCategoria(numero, img);
+    this.FilterService.getCategoria(number, name, img);
     this.scrollToTop();
   }
 

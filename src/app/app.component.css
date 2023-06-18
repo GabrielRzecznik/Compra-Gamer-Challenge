@@ -2,3 +2,10 @@
     margin-top: 35px;
 }
 
+.z-index-front{
+    z-index: 2;
+}
+
+.z-index-back{
+    z-index: 1;
+}

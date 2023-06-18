@@ -5,21 +5,28 @@
 .custom-accordion-container{
   position: sticky;
   top: 20px;
+}
 
+.custom-accordion-margin{
+  margin-bottom: 20px;
 }
 
 .custom-accordion .mat-expansion-panel-header {
-    font-family: 'Poppins', sans-serif;
-    background-color: rgb(10, 10, 10);
-    color: #fff;
-    transition: background-color 0.3s ease;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
-  }
-  
-  .custom-accordion .mat-expansion-panel-header:hover {
-    background-color: rgb(25, 25, 25);
-    animation: computer-animation 10s infinite linear;
-  }
+  font-family: 'Poppins', sans-serif;
+  background-color: rgb(10, 10, 10);
+  color: #fff;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.custom-accordion .mat-expansion-panel-header:hover {
+  background-color: rgb(25, 25, 25);
+  animation: computer-animation 10s infinite linear;
+}
+
+.un-selectable{
+  user-select: none;
+}
   
 @keyframes computer-animation {
     0% {
@@ -52,4 +59,15 @@
   margin-top: 15px;
   width: 100%;
   transition: opacity 0.3s ease;
+}
+
+@media (min-width: 0px) and (max-width: 767.98px) {
+  .btnScroll {
+    position: fixed;
+    width: 100px;
+    bottom: 10px;
+    right: 12px;
+  }
+
+
 }

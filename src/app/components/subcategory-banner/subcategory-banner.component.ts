@@ -8,7 +8,7 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 
 export class SubcategoryBannerComponent {
-  private id_subCategoria: number = 0;
+  public id_subCategoria: number = 0;
   private startOfUrl: string = 'https://compragamer.net/categorias_demo/';
   public bannerSelect: string = this.startOfUrl + 'subcategoria_default.jpg';
   public name: string = "Destacado";
@@ -23,7 +23,11 @@ export class SubcategoryBannerComponent {
 
   private getFilter(){
     this.FilterService.id_subCategoria$.subscribe((id_subCategoria) => {
-      this.id_subCategoria = id_subCategoria;
+      if (this.id_subCategoria != 0) {
+        this.id_subCategoria = id_subCategoria;
+      }else{
+        this.imgCategoria = "https://imagenes.compragamer.com/bannerSubcategoria/subcategoria_default.jpg";
+      }
     });
   };
 
