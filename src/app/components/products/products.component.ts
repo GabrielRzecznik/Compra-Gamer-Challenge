@@ -16,20 +16,16 @@ export class ProductsComponent implements OnInit {
   public products: Product[] = [];
   private productsFilter: Product[] = [];
   private id_subCategoria: number = 0;
-  private existence = true;
+  public existence = true;
   public imgURL = "https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_";
   public imgJpg = ".jpg";
-  isCollapsed = false;
+  public noStock = true;
 
   constructor(private apiCompraGamerService: ApiCompraGamerService, private FilterService: FilterService, private shoppingCartCounterService: ShoppingCartCounterService, private breakpointObserver: BreakpointObserver) { }
 
   public ngOnInit() {
     this.getProductos();
     this.getFilter();
-
-    this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small]).subscribe(result => {
-      this.isCollapsed = result.matches;
-    });
   }
 
   private getProductos() {
@@ -45,12 +41,17 @@ export class ProductsComponent implements OnInit {
     }else{
       this.apiCompraGamerService.getProductos().subscribe(
         (products) => {
-          this.existence = false;
+          let count = 0;
           for (let i = 0; i < products.length; i++) {
             if (products[i].id_subcategoria === this.id_subCategoria) {
               this.productsFilter.push(products[i]);
-              this.existence = true;
+              count++;
             }
+          }
+          if (count == 0) {
+            this.existence = false;
+          }else{
+            this.existence = true;
           }
           this.products = this.productsFilter;
           this.productsFilter = [];

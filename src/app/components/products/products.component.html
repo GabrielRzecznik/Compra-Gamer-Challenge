@@ -1,4 +1,10 @@
-<div class="row">
+
+  <div *ngIf="existence == false" class="centerNoExistence card-content-noStock">
+    <img class="img-noStock" src="https://t4.ftcdn.net/jpg/02/03/46/61/360_F_203466155_8OcqNJJ27u5qO5bdVzAhjKc9j0iEM7NL.jpg" alt="No se encontraron productos">
+    <h4 class="fontStyle">
+      Actualmente no hay productos disponibles en esta subcategoría. Nuestro equipo está trabajando arduamente para reponer el inventario. Mientras tanto, te invitamos a descubrir otros productos que podrían ser de tu interés.
+    </h4>
+  </div>
   <div *ngFor="let product of products">
     <mat-card class="card">
       <div class="card-content">
@@ -30,4 +36,3 @@
       </div>
     </mat-card>
   </div>
-</div>

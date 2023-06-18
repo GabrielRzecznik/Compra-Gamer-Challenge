@@ -50,6 +50,7 @@ export class SubcategoriesComponent {
     const numero: number = subcategoria['id'];
     const img: string = subcategoria['imagen'];
     this.FilterService.enviarId_subCategoria(numero, img);
+    this.scrollToTop();
   }
 
   @HostListener('window:scroll', [])

@@ -22,7 +22,24 @@
   background-color: rgb(255, 255, 255);
   color: rgb(10, 10, 10);
 }
+
+.card-content-noStock{
+  padding: 15px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(10, 10, 10);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fontStyle{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
   
+.img-noStock{
+  width: 150px;
+  height: 150px;
+}
+
 .image-container img {
   text-align: center;
   width: 100%;
@@ -44,6 +61,12 @@ h3 {
   font-weight: bold;
   font-size: 18px;
   margin: 0;
+}
+
+.centerNoExistence{
+  text-align: center;
+  padding: 50px;
+  color: rgb(10, 10, 10);
 }
 
 @media (min-width: 0px) and (max-width: 991px) {
