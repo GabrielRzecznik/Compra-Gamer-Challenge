@@ -6,7 +6,7 @@
   margin-right: 20px;
 }
 
-.btnShopping-cart{
+.btn-shopping-cart{
   font-family: 'Poppins', sans-serif;
   width: 100%;
 }
@@ -24,19 +24,20 @@
   color: rgb(10, 10, 10);
 }
 
-.card-content-noStock{
+.card-content-no-stock{
+  margin-bottom: 15px;
   padding: 15px;
   background-color: rgb(255, 255, 255);
   color: rgb(10, 10, 10);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.fontStyle{
+.font-style{
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
 }
   
-.img-noStock{
+.img-no-stock{
   width: 150px;
   height: 150px;
 }
@@ -57,7 +58,7 @@
   margin-left: 10px;
 }
 
-h3 {
+.product-name {
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 18px;
@@ -66,11 +67,12 @@ h3 {
 
 .center-no-existence{
   text-align: center;
+  margin-bottom: 15px;
   padding: 50px;
   color: rgb(10, 10, 10);
 }
 
-.chip-subCategory{
+.chip-subcategory{
   margin-bottom: 10px;
 }
 

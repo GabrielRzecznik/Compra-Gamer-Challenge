@@ -1,4 +1,4 @@
-<mat-chip class="chip-subCategory" *ngIf="nameCategoria != ''">
+<mat-chip class="chip-subcategory" *ngIf="nameCategoria != ''">
   {{ nameCategoria }}
   <button matChipRemove (click)="onChipRemoved()">
     <mat-icon>cancel</mat-icon>
@@ -6,9 +6,9 @@
 </mat-chip>
 
 <!--Sin Stock-->
-<div *ngIf="existence == false" class="center-no-existence card-content-noStock un-selectable">
-  <img class="img-noStock" src="https://t4.ftcdn.net/jpg/02/03/46/61/360_F_203466155_8OcqNJJ27u5qO5bdVzAhjKc9j0iEM7NL.jpg" alt="No se encontraron productos">
-  <h4 class="fontStyle">
+<div *ngIf="existence == false" class="center-no-existence card-content-no-stock un-selectable">
+  <img class="img-no-stock" src="https://t4.ftcdn.net/jpg/02/03/46/61/360_F_203466155_8OcqNJJ27u5qO5bdVzAhjKc9j0iEM7NL.jpg" alt="No se encontraron productos">
+  <h4 class="font-style">
     Actualmente no hay productos disponibles en esta subcategoría. Nuestro equipo está trabajando arduamente para reponer el inventario. Mientras tanto, te invitamos a descubrir otros productos que podrían ser de tu interés.
   </h4>
 </div>
@@ -26,13 +26,13 @@
           </div>
           <div class="col-lg-7">
             <div class="product-info">
-              <h3>{{ product.nombre }}</h3>
+              <h3 class="product-name">{{ product.nombre }}</h3>
               <p>Precio: $ {{ formatPrecio(product.precio + (product.precio * (product.iva / 100))) }}</p>
             </div>
           </div>
           <div class="col-lg-3">
             <span class="shopping-cart">
-              <button class="btnShopping-cart" mat-flat-button (click)="addProduct(product)">
+              <button class="btn-shopping-cart" mat-flat-button (click)="addProduct(product)">
                 <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
                 <span class="button-flat-text">
                   Agregar
