@@ -15,6 +15,7 @@ export class RegisterComponent {
   public title: string = "Menú de inicio de sesión";
   public showRegister: boolean = false;
   public isLoggedIn: boolean = false;
+  public user!: User;
 
   constructor(public dialogRef: MatDialogRef<RegisterComponent>, private userDataService: UserDataService){}
 
@@ -27,6 +28,14 @@ export class RegisterComponent {
       this.isLoggedIn = true;
       this.title = "Cuenta"
     }
+    
+    this.userDataService.subscriptionUser().subscribe({
+      next:(user)=>{
+        if (user) {
+          this.user = user;
+        }
+      }
+    })
   }
 
   public loggedOut(){
@@ -38,7 +47,7 @@ export class RegisterComponent {
   public apellidoFormControl = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]);
   public DNIFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\d{7,8}$/)]);
   public telefonoFormControl = new FormControl('', [Validators.required, Validators.pattern(/^(\+\d{1,3}\s?)?(\d{2,4}[\s-]?)?\d{4}[\s-]?\d{4}$/)]);
-  public emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  public emailFormControl = new FormControl('', [Validators.required, Validators.email, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]);
   public passwordFormControl = new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]);
   
   public nombreTouched = false;
@@ -54,19 +63,19 @@ export class RegisterComponent {
   }
 
   public submitForm() {
-    const user = {
-      nombre: this.nombreFormControl.value,
-      apellido: this.apellidoFormControl.value,
-      dni: this.DNIFormControl.value,
-      email: this.emailFormControl.value,
-      telefono: this.telefonoFormControl.value,
-      password: this.passwordFormControl.value
+    this.user = {
+      nombre: this.nombreFormControl.value || "",
+      apellido: this.apellidoFormControl.value || "",
+      dni: this.DNIFormControl.value || "",
+      email: this.emailFormControl.value || "",
+      telefono: this.telefonoFormControl.value || "",
+      password: this.passwordFormControl.value || ""
     };
       
     if (this.validateForm()) {
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(this.user));
 
-      this.userDataService.changeUser(user as User);
+      this.userDataService.changeUser(this.user);
       this.clearForm();
       this.closeDialogo();
     }

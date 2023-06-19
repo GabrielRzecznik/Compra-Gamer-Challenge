@@ -9,11 +9,11 @@
     </span>
     <span *ngIf="!showRegister && isLoggedIn">
       <div class="userInfo font-style">
-        <!--Nombre: {{ userName }} <br>-->
-        <!--Apellido: {{ userSurname }} <br>-->
-        <!--Email: {{ userEmail }} <br>-->
-        <!--DNI: {{ userDNI }} <br>-->
-        <!--Teléfono: {{ userPhone }}-->
+        Nombre: {{ user.nombre }} <br>
+        Apellido: {{ user.apellido }} <br>
+        Email: {{ user.email }} <br>
+        DNI: {{ user.dni }} <br>
+        Teléfono: {{ user.telefono }}
       </div>
       <button class="font-style button-register" mat-flat-button mat-dialog-close color="warn" (click)="loggedOut()">Cerrar sesión</button>
       <button class="font-style button-register" mat-button mat-dialog-close>Atrás</button>
@@ -59,7 +59,7 @@
         <mat-form-field class="example-full-width mat-accent">
           <mat-label>Email</mat-label>
           <input color="accent" matInput type="email" placeholder="Ingrese su email" [formControl]="emailFormControl" required autocomplete="current-email">
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          <mat-error *ngIf="(emailFormControl.hasError('email') || emailFormControl.hasError('pattern')) && !emailFormControl.hasError('required')">
             Por favor, ingrese un correo electrónico válido.
           </mat-error>
           <mat-error *ngIf="emailFormControl.hasError('required')">
