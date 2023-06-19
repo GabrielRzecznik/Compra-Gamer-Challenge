@@ -74,3 +74,9 @@
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
 }
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .logo_cg{
+    height: 30px;
+  }
+}
