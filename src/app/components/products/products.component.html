@@ -32,15 +32,12 @@
           </div>
           <div class="col-lg-3">
             <span class="shopping-cart">
-              <button class="btn-shopping-cart" mat-flat-button (click)="addProduct(product)">
+              <button class="btn-shopping-cart" mat-raised-button matBadge="{{ stockInCartCount(product.id_producto) !== 0 ? stockInCartCount(product.id_producto) : '' }}" matBadgeColor="warn" (click)="addProduct(product)">
                 <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
                 <span class="button-flat-text">
                   Agregar
                 </span>
               </button>
-              <span *ngIf="stockInCartCount(product.id_producto) != 0 || false" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{ stockInCartCount(product.id_producto) || 0 }}
-              </span> 
             </span>
           </div>
         </div>

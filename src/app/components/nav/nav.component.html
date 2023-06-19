@@ -1,13 +1,16 @@
 <mat-toolbar class="nav-cg computer-border">
     <div class="container">
         <img class="logo_cg" src="https://compragamer.net/assets/img/logo-fix.png" alt="Logo">
-        <span class="example-button-row position-relative button-right">
-            <button mat-raised-button>
+        <span class="example-button-row position-relative button-right button-margin">
+            <button class="font-style" mat-raised-button matBadge="{{ cartProductCount !== 0 ? cartProductCount : '' }}" matBadgeColor="warn">
                 <mat-icon class="nav-icons" matBadgePosition="above after">shopping_cart</mat-icon>Carrito
             </button>
-            <span *ngIf="cartProductCount != 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span class="cdk-visually-hidden">
                 {{ cartProductCount }}
             </span>
         </span>
     </div>    
 </mat-toolbar>
+
+
+

@@ -2,6 +2,11 @@
     height: 50px;
 }
 
+.font-style{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
 .nav-cg{
     background-color: rgb(10, 10, 10);
     padding: 10px;
