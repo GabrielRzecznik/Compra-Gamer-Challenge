@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
   }
 
   private getProducts() {
-    if (this.id_subCategoria == 0) {
+    if (this.id_subCategoria === 0) {
       this.apiCompraGamerService.getProducts().subscribe(
         (products) => {
           this.products = products;
@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit {
               count++;
             }
           }
-          if (count == 0) {
+          if (count === 0) {
             this.existence = false;
           } else {
             this.existence = true;
@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit {
     this.stockInCart = 0;
 
     for (const item of this.maxQuantityAllowed) {
-      if (item.id_producto == product.id_producto) {
+      if (item.id_producto === product.id_producto) {
         this.stockInCart++;
       }
     }
@@ -104,7 +104,7 @@ export class ProductsComponent implements OnInit {
     this.stockInCart = 0;
 
     for (const item of this.maxQuantityAllowed) {
-      if (item.id_producto == product.id_producto) {
+      if (item.id_producto === product.id_producto) {
         this.stockInCart++;
       }
     }
@@ -141,7 +141,7 @@ export class ProductsComponent implements OnInit {
       if (localStorage.getItem("shoppingCar") !== "") {
         this.shoppingCar = JSON.parse(localStorage.getItem("shoppingCar")!);
         for (const item of this.shoppingCar) {
-          if (item.id_producto == id_producto) {
+          if (item.id_producto === id_producto) {
             this.stockInCart++;
           }
         }
