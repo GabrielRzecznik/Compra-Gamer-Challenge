@@ -1,5 +1,6 @@
-.button-record{
-    background-color: #666666;
+.button-register{
+    width: 100%;
+    margin-top: 10px;
 }
 
 .center{
@@ -18,6 +19,7 @@
 
 .record-visibility{
     display: none;
+    background-color: aqua;
 }
 
 .computer-border::after {
@@ -30,6 +32,41 @@
     animation: computer-border-animation 10s infinite linear;
 }
   
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.spacing{
+  margin-top: 45px;
+}
+
+.example-full-width {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.top-spacing{
+  margin-top: 20px;
+}
+
+.font-style{
+  font-family: 'Poppins', sans-serif;
+}
+
+input{
+  font-family: 'Poppins', sans-serif;
+}
+
+.userInfo{
+  width: 300px;
+  margin-bottom: 25px;
+}
+
 @keyframes computer-border-animation {
     0% {
       background-color: red;
@@ -56,25 +93,3 @@
       background-color: red;
     }
 }
-  
-.example-card {
-    max-width: 400px;
-  }
-  
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-}
-
-.spacing{
-    margin-top: 45px;
-}
-  
-.example-full-width {
-    width: 100%;
-}
-
-.top-spacing{
-    margin-top: 20px;
-}
-
