@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SubCategories } from '../interfaces/subCategories.interface';
+import { SubCategory } from '../interfaces/subCategory.interface';
 import { Product } from '../interfaces/product.interface';
 
 @Injectable({
@@ -11,9 +11,9 @@ import { Product } from '../interfaces/product.interface';
 export class ApiCompraGamerService {
   constructor(private http: HttpClient) { }
 
-  public getSubcategories(): Observable<SubCategories[]> {
+  public getSubcategories(): Observable<SubCategory[]> {
     const url = 'https://static.compragamer.com/test/subcategorias.json';
-    return this.http.get<SubCategories[]>(url);
+    return this.http.get<SubCategory[]>(url);
   }
 
   public getProducts(): Observable<Product[]> {

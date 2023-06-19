@@ -87,11 +87,13 @@ export class ProductsComponent implements OnInit {
   public stockInCartCount(id_producto: number){
     this.stockInCart = 0;
     
-    if (localStorage.getItem("shoppingCar") != "") {
-      this.shoppingCar = JSON.parse(localStorage.getItem("shoppingCar")!);
-      for (const item of this.shoppingCar) {
-        if (item.id_producto == id_producto) {
-          this.stockInCart++;
+    if (localStorage.getItem("shoppingCar")) {
+      if (localStorage.getItem("shoppingCar") !== "") {
+        this.shoppingCar = JSON.parse(localStorage.getItem("shoppingCar")!);
+        for (const item of this.shoppingCar) {
+          if (item.id_producto == id_producto) {
+            this.stockInCart++;
+          }
         }
       }
     }

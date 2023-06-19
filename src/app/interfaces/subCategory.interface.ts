@@ -1,4 +1,4 @@
-export interface SubCategories {
+export interface SubCategory {
     id: number;
     id_agrupador: number;
     imagen: string;

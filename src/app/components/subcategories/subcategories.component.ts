@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
-import { Categories } from 'src/app/interfaces/categories.interface';
-import { SubCategories } from 'src/app/interfaces/subCategories.interface';
+import { Category } from 'src/app/interfaces/category.interface';
+import { SubCategory } from 'src/app/interfaces/subCategory.interface';
 import { ApiCompraGamerService } from 'src/app/services/api-compra-gamer.service';
 import { FilterService } from 'src/app/services/filter.service';
 
@@ -11,7 +11,7 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 
 export class SubcategoriesComponent {
-  public categories: Categories[] = [
+  public categories: Category[] = [
     { id: 24, name: 'Perifericos' },
     { id: 5, name: 'Equipos y Notebooks' },
     { id: 7, name: 'Procesadores' },
@@ -25,7 +25,7 @@ export class SubcategoriesComponent {
     { id: 6, name: 'Monitores y Televisores' }
   ];
 
-  public subcategories: SubCategories[] = [];
+  public subcategories: SubCategory[] = [];
 
   public showScroll = false;
 
@@ -46,7 +46,7 @@ export class SubcategoriesComponent {
     );
   }
 
-  public filter(subcategoria: SubCategories) {
+  public filter(subcategoria: SubCategory) {
     const number: number = subcategoria['id'];
     const name: string = subcategoria['nombre'];
     const img: string = subcategoria['imagen'];
