@@ -11,7 +11,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-
 export class ProductsComponent implements OnInit {
   public products: Product[] = [];
   private productsFilter: Product[] = [];
@@ -21,10 +20,18 @@ export class ProductsComponent implements OnInit {
   public imgURL = "https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_";
   public imgJpg = ".jpg";
   public noStock = true;
+  private maxQuantityAllowed: Product[] = [];
+  public buttonStatus: { [productId: string]: boolean } = {};
   private shoppingCar: Product[] = [];
   public stockInCart = 0;
+  public productValidity: boolean[] = [];
 
-  constructor(private apiCompraGamerService: ApiCompraGamerService, private FilterService: FilterService, private shoppingCartCounterService: ShoppingCartCounterService, private snackBar: MatSnackBar) { }
+  constructor(
+    private apiCompraGamerService: ApiCompraGamerService,
+    private filterService: FilterService,
+    private shoppingCartCounterService: ShoppingCartCounterService,
+    private snackBar: MatSnackBar
+  ) { }
 
   public ngOnInit() {
     this.getProducts();
@@ -36,12 +43,13 @@ export class ProductsComponent implements OnInit {
       this.apiCompraGamerService.getProducts().subscribe(
         (products) => {
           this.products = products;
+          this.initializeProductValidity();
         },
         (error) => {
           console.error(error);
         }
       );
-    }else{
+    } else {
       this.apiCompraGamerService.getProducts().subscribe(
         (products) => {
           let count = 0;
@@ -53,29 +61,68 @@ export class ProductsComponent implements OnInit {
           }
           if (count == 0) {
             this.existence = false;
-          }else{
+          } else {
             this.existence = true;
           }
           this.products = this.productsFilter;
           this.productsFilter = [];
+          this.initializeProductValidity();
         }
       );
     }
   }
 
-  public addProduct(product: Product) {
-    this.shoppingCartCounterService.addProduct(product);
+  private initializeProductValidity() {
+    this.productValidity = this.products.map((product) => this.validateMaxQuantityAllowed(product));
+  }
 
-    this.openSnackBar(product.nombre + ' se agrego al carrito de compras');
+  public addProduct(product: Product, i: number) {
+    this.maxQuantityAllowed = JSON.parse(localStorage.getItem("shoppingCar")!) || [];
+    this.stockInCart = 0;
+
+    for (const item of this.maxQuantityAllowed) {
+      if (item.id_producto == product.id_producto) {
+        this.stockInCart++;
+      }
+    }
+
+    if (product.vendible > this.stockInCart) {
+      this.shoppingCartCounterService.addProduct(product);
+      this.openSnackBar(product.nombre + ' se agrego al carrito de compras');
+
+      if (product.vendible === (this.stockInCart + 1)) {
+        this.productValidity[i] = true;
+      }
+    } else {
+      this.openSnackBar('ERROR: Solamente se permite agregar hasta ' + product.vendible + ' uni. de ' + product.nombre + '. Siempre en cuanto tengamos existencias en stock');
+    }
+    this.stockInCart = 0;
+  }
+
+  public validateMaxQuantityAllowed(product: Product) {
+    this.maxQuantityAllowed = JSON.parse(localStorage.getItem("shoppingCar")!) || [];
+    this.stockInCart = 0;
+
+    for (const item of this.maxQuantityAllowed) {
+      if (item.id_producto == product.id_producto) {
+        this.stockInCart++;
+      }
+    }
+
+    if (product.vendible === this.stockInCart) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private getFilter() {
-    this.FilterService.id_subCategoria$.subscribe((id_subCategoria) => {
+    this.filterService.id_subCategoria$.subscribe((id_subCategoria) => {
       this.id_subCategoria = id_subCategoria;
       this.getProducts();
     });
 
-    this.FilterService.nameCategoria$.subscribe((nameCategoria) => {
+    this.filterService.nameCategoria$.subscribe((nameCategoria) => {
       this.nameCategoria = nameCategoria;
     });
   }
@@ -87,9 +134,9 @@ export class ProductsComponent implements OnInit {
     return integerPart.replace(/,/g, '.') + (formattedDecimalPart ? ',' + formattedDecimalPart : '');
   }
 
-  public stockInCartCount(id_producto: number){
+  public stockInCartCount(id_producto: number) {
     this.stockInCart = 0;
-    
+
     if (localStorage.getItem("shoppingCar")) {
       if (localStorage.getItem("shoppingCar") !== "") {
         this.shoppingCar = JSON.parse(localStorage.getItem("shoppingCar")!);
@@ -112,7 +159,7 @@ export class ProductsComponent implements OnInit {
   }
 
   private updateBanner() {
-    this.FilterService.getId_subCategoria(0);
+    this.filterService.getId_subCategoria(0);
     this.scrollToTop();
   }
 
@@ -129,4 +176,3 @@ export class ProductsComponent implements OnInit {
     });
   }
 }
-

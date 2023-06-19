@@ -110,3 +110,10 @@
     margin-left: 0px;
   }  
 }
+
+button.btn-shopping-cart[disabled] {
+  opacity: 1 !important;
+  color: rgba(63, 63, 63, 0.87) !important;
+  pointer-events: auto !important;
+  background-color: #c4c4c4 !important;
+}

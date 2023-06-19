@@ -1,3 +1,4 @@
+<!--Alerta de Producto Agregado al Carrito de Compras-->
 <mat-chip class="chip-subcategory" *ngIf="nameCategoria != ''">
   {{ nameCategoria }}
   <button matChipRemove (click)="onChipRemoved()">
@@ -5,7 +6,7 @@
   </button>
 </mat-chip>
 
-<!--Sin Stock-->
+<!--Sin Stock de Productos en Subcategoria-->
 <div *ngIf="existence == false" class="center-no-existence card-content-no-stock un-selectable">
   <img class="img-no-stock" src="https://t4.ftcdn.net/jpg/02/03/46/61/360_F_203466155_8OcqNJJ27u5qO5bdVzAhjKc9j0iEM7NL.jpg" alt="No se encontraron productos">
   <h4 class="font-style">
@@ -14,34 +15,37 @@
 </div>
 
 <!--Listado de Productos-->
-<div *ngFor="let product of products">
-  <mat-card class="card">
-    <div class="card-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-2 center">
-            <div class="image-container">
-              <img class="hidden" src="{{ imgURL+product.imagenes[0].nombre+imgJpg }}" alt="Imagen del producto">
+<div *ngFor="let product of products; let i = index">
+  <!--Filtraado de Productos sin Stock-->
+  <span *ngIf="product.stock > 0">
+    <mat-card class="card">
+      <div class="card-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-2 center">
+              <div class="image-container">
+                <img class="hidden" src="{{ imgURL+product.imagenes[0].nombre+imgJpg }}" alt="Imagen del producto">
+              </div>
             </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="product-info">
-              <h3 class="product-name">{{ product.nombre }}</h3>
-              <p>Precio: $ {{ formatPrecio(product.precio + (product.precio * (product.iva / 100))) }}</p>
+            <div class="col-lg-7">
+              <div class="product-info">
+                <h3 class="product-name">{{ product.nombre }}</h3>
+                <p>Precio: $ {{ formatPrecio(product.precio + (product.precio * (product.iva / 100))) }}</p>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-3">
-            <span class="shopping-cart">
-              <button class="btn-shopping-cart" mat-raised-button matBadge="{{ stockInCartCount(product.id_producto) !== 0 ? stockInCartCount(product.id_producto) : '' }}" matBadgeColor="warn" (click)="addProduct(product)">
-                <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
-                <span class="button-flat-text">
-                  Agregar
-                </span>
-              </button>
-            </span>
+            <div class="col-lg-3">
+              <span class="shopping-cart">
+                <button class="btn-shopping-cart" mat-raised-button matBadge="{{ stockInCartCount(product.id_producto) !== 0 ? stockInCartCount(product.id_producto) : '' }}" matBadgeColor="warn" (click)="addProduct(product, i)" [disabled]="productValidity[i]">
+                  <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
+                  <span class="button-flat-text">
+                    Agregar
+                  </span>
+                </button>
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </mat-card>
+    </mat-card>
+  </span>  
 </div>
