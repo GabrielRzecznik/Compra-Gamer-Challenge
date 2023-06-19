@@ -4,6 +4,7 @@ import { Product } from 'src/app/interfaces/product.interface';
 import { ApiCompraGamerService } from 'src/app/services/api-compra-gamer.service';
 import { FilterService } from 'src/app/services/filter.service';
 import { ShoppingCartCounterService } from 'src/app/services/shopping-cart-counter.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products',
@@ -23,7 +24,7 @@ export class ProductsComponent implements OnInit {
   private shoppingCar: Product[] = [];
   public stockInCart = 0;
 
-  constructor(private apiCompraGamerService: ApiCompraGamerService, private FilterService: FilterService, private shoppingCartCounterService: ShoppingCartCounterService) { }
+  constructor(private apiCompraGamerService: ApiCompraGamerService, private FilterService: FilterService, private shoppingCartCounterService: ShoppingCartCounterService, private snackBar: MatSnackBar) { }
 
   public ngOnInit() {
     this.getProducts();
@@ -64,6 +65,8 @@ export class ProductsComponent implements OnInit {
 
   public addProduct(product: Product) {
     this.shoppingCartCounterService.addProduct(product);
+
+    this.openSnackBar(product.nombre + ' se agrego al carrito de compras');
   }
 
   private getFilter() {
@@ -119,4 +122,11 @@ export class ProductsComponent implements OnInit {
       behavior: 'smooth'
     });
   }
+
+  public openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000
+    });
+  }
 }
+

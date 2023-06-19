@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { LayoutModule } from '@angular/cdk/layout';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatBadgeModule} from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //Components
 import { AppComponent } from './app.component';
@@ -32,14 +32,14 @@ import { SubcategoryBannerComponent } from './components/subcategory-banner/subc
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    //LayoutModule,
     MatChipsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
