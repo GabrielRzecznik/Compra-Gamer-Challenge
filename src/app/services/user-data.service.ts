@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
-  private userName = new BehaviorSubject<string>(localStorage.getItem('nombre') || '');
-  private userSurname = new BehaviorSubject<string>(localStorage.getItem('apellido') || '');
+  private userData = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem("user") || '{}') || null);
 
-  public subscriptionUser(): Observable<string> {
-    return combineLatest([this.userName, this.userSurname]).pipe(
-      map(([name, surname]) => name + ' ' + surname)
-    );
+  public subscriptionUser() {
+    return this.userData.asObservable();
+  }
+
+  public changeUser(user: User){
+    this.userData.next(user);
+  }
+
+  public removeUser(){
+    this.userData.next(null);
   }
 }

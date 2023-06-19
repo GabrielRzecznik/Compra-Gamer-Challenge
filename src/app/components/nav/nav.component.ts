@@ -19,9 +19,16 @@ export class NavComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    if (localStorage.getItem('nombre') != null) {
-      this.sessionButton = (localStorage.getItem('nombre') || "") + " " + (localStorage.getItem('apellido') || "");
-    }
+    this.userDataService.subscriptionUser().subscribe({
+      next:(user)=>{
+        if (user && Object.values(user).length > 0) {
+          this.sessionButton = `${user.nombre} ${user.apellido}`;
+          return
+        }
+        
+        this.sessionButton = 'Iniciar sesión';
+      }
+    })
   }
 
   ngOnDestroy() {
@@ -32,20 +39,12 @@ export class NavComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(RegisterComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      //Borrar y arreglar
-      this.fullName();
+     
     });
   }
 
-  private fullName(){
-    this.sessionSubscription = this.userDataService.subscriptionUser().subscribe(fullName => {
-      if (localStorage.getItem('nombre') != null) {
-        this.sessionButton = (localStorage.getItem('nombre') || "") + " " + (localStorage.getItem('apellido') || "");
-      }else{
-        this.sessionButton = 'Iniciar sesión';
-      }
-    });
-  }
+ 
+ 
 }
 
 

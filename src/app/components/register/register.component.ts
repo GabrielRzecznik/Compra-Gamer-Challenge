@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Users } from 'src/app/interfaces/user.interface';
+import { User } from 'src/app/interfaces/user.interface';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-register',
@@ -14,38 +15,25 @@ export class RegisterComponent {
   public title: string = "Menú de inicio de sesión";
   public showRegister: boolean = false;
   public isLoggedIn: boolean = false;
-  public userName: string = localStorage.getItem('nombre') || "";
-  public userSurname: string = localStorage.getItem('apellido') || "";
-  public userEmail: string = localStorage.getItem('email') || "";
-  public userDNI: string = localStorage.getItem('dni') || "";
-  public userPhone: string = localStorage.getItem('telefono') || "";
 
-  constructor(public dialogRef: MatDialogRef<0>){}
+  constructor(public dialogRef: MatDialogRef<RegisterComponent>, private userDataService: UserDataService){}
 
   closeDialogo(): void {
     this.dialogRef.close();
   }
 
   public ngOnInit() {
-    if (localStorage.getItem('nombre') != null) {
+    if (localStorage.getItem('user') != null) {
       this.isLoggedIn = true;
       this.title = "Cuenta"
     }
   }
 
   public loggedOut(){
+    this.userDataService.removeUser();
     localStorage.clear();
   }
 
-  public user: Users = {
-    nombre: '',
-    apellido: '',
-    dni: '',
-    email: '',
-    telefono: '',
-    password: '',
-  };
-  
   public nombreFormControl = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]);
   public apellidoFormControl = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]);
   public DNIFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\d{7,8}$/)]);
@@ -66,28 +54,27 @@ export class RegisterComponent {
   }
 
   public submitForm() {
-    this.user.nombre = this.nombreFormControl.value || "";
-    this.user.apellido = this.apellidoFormControl.value || "";
-    this.user.dni = this.DNIFormControl.value || "";
-    this.user.email = this.emailFormControl.value || "";
-    this.user.telefono = this.telefonoFormControl.value || "";
-    this.user.password = this.passwordFormControl.value || "";
-
+    const user = {
+      nombre: this.nombreFormControl.value,
+      apellido: this.apellidoFormControl.value,
+      dni: this.DNIFormControl.value,
+      email: this.emailFormControl.value,
+      telefono: this.telefonoFormControl.value,
+      password: this.passwordFormControl.value
+    };
+      
     if (this.validateForm()) {
-      localStorage.setItem('nombre', this.user.nombre);
-      localStorage.setItem('apellido', this.user.apellido);
-      localStorage.setItem('dni', this.user.dni);
-      localStorage.setItem('email', this.user.email);
-      localStorage.setItem('telefono', this.user.telefono);
-      localStorage.setItem('contraseña', this.user.password);
+      localStorage.setItem('user', JSON.stringify(user));
 
+      this.userDataService.changeUser(user as User);
       this.clearForm();
       this.closeDialogo();
     }
+    
   }
 
   public validateForm(): boolean {
-    if (this.user.nombre === "" || this.user.apellido === "" || this.user.dni === "" || this.user.email === "" || this.user.telefono === "" || this.user.password === "") {
+    if (this.nombreFormControl.value === "" || this.apellidoFormControl.value === "" || this.DNIFormControl.value === "" || this.emailFormControl.value === "" || this.telefonoFormControl.value === "" || this.passwordFormControl.value === "") {
       alert('Por favor, complete todos los campos antes de enviar el formulario');
       return false;
     }else if (
@@ -104,15 +91,6 @@ export class RegisterComponent {
   }
 
   public clearForm() {
-    this.user = {
-      nombre: '',
-      apellido: '',
-      dni: '',
-      email: '',
-      telefono: '',
-      password: '',
-    };
-    
     this.nombreTouched = false;
     this.apellidoTouched = false;
     this.dniTouched = false;
