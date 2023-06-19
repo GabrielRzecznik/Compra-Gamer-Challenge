@@ -1,13 +1,11 @@
 <mat-toolbar class="nav-cg computer-border">
     <div class="container">
         <img class="logo_cg" src="https://compragamer.net/assets/img/logo-fix.png" alt="Logo">
+        
         <span class="example-button-row position-relative button-right button-margin">
             <button class="font-style" mat-raised-button matBadge="{{ cartProductCount !== 0 ? cartProductCount : '' }}" matBadgeColor="warn">
-                <mat-icon class="nav-icons" matBadgePosition="above after">shopping_cart</mat-icon>Carrito
+                <mat-icon class="nav-icons nav-icon-shopping_cart" matBadgePosition="above after" style="margin-right: -4px;">shopping_cart</mat-icon>
             </button>
-            <span class="cdk-visually-hidden">
-                {{ cartProductCount }}
-            </span>
         </span>
     </div>    
 </mat-toolbar>
