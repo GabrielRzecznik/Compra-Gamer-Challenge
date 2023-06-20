@@ -1,8 +1,9 @@
-.logo_cg{
+.logo-cg{
     height: 50px;
 }
 
 .nav-cg{
+    min-height: 70px;
     background-color: rgb(10, 10, 10);
     padding: 10px;
 }
@@ -49,6 +50,10 @@
 .font-style{
   font-family: 'Poppins', sans-serif;
 }
+
+.session-text{
+  margin-left: 10px;
+}
   
 @keyframes computer-border-animation {
     0% {
@@ -77,4 +82,13 @@
     }
 }
 
+@media (min-width: 0px) and (max-width: 767px) {
+  .logo-cg {
+    margin-top: 9px;
+    height: 30px;
+  }
 
+  .session-text{
+    display: none;
+  }
+}

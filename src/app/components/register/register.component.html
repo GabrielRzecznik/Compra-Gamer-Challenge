@@ -21,7 +21,7 @@
     <span *ngIf="showRegister">
       <form class="form-record" (ngSubmit)="submitForm()">
         <div class="row">
-          <div class="col-6">
+          <div class="col-sm-6">
             <mat-form-field class="example-full-width mat-accent">
               <mat-label>Nombre</mat-label>
               <input matInput [formControl]="nombreFormControl" placeholder="Ingrese su nombre">
@@ -33,7 +33,7 @@
               </mat-error>
             </mat-form-field>
           </div>
-          <div class="col-6">
+          <div class="col-sm-6">
             <mat-form-field class="example-full-width mat-accent">
               <mat-label>Apellido</mat-label>
               <input matInput [formControl]="apellidoFormControl" placeholder="Ingrese su apellido">

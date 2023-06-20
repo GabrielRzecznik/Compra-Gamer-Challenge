@@ -1,10 +1,10 @@
 <mat-toolbar class="nav-cg computer-border">
     <div class="container">
-        <img class="logo_cg" src="https://compragamer.net/assets/img/logo-fix.png" alt="Error al cargar logo">
+        <img class="logo-cg" src="https://compragamer.net/assets/img/logo-fix.png" alt="Error al cargar logo">
         <span class="example-button-row position-relative button-right">
             <button mat-raised-button (click)="openDialog()">
-                <mat-icon matBadgePosition="above after">account_circle</mat-icon>
-                <span class="font-style" >
+                <mat-icon class="session-icon" matBadgePosition="above after" style="margin-right: -4px;">account_circle</mat-icon>
+                <span class="session-text">
                     {{ sessionButton }}
                 </span>
             </button>

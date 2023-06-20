@@ -31,15 +31,6 @@
     height: 5px;
     animation: computer-border-animation 10s infinite linear;
 }
-  
-.example-card {
-  max-width: 400px;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
 
 .spacing{
   margin-top: 45px;
