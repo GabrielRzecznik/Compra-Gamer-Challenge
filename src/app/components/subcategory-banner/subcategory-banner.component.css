@@ -1,4 +1,4 @@
-.banner{
+.banner {
     border-radius: 4.5px;
     width: 100%;
     max-height: 160px;
@@ -6,7 +6,7 @@
     margin-bottom: 25px;
   }
 
-.title{
+.title {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     padding: 20px;

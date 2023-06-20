@@ -35,7 +35,6 @@ export class ShoppingCartComponent {
   }
 
   public ngOnInit() {
-    //const localStorageData = localStorage.getItem('shoppingCar');
     this.cartItems = this.shoppingCartCounter.refreshProduct();
 
     this.price = 0;
@@ -52,12 +51,12 @@ export class ShoppingCartComponent {
   }
 
   public removeProduct(indexToRemove: number){
-    const shoppingCarString = localStorage.getItem('shoppingCar');
-    if (shoppingCarString) {
-      const shoppingCar = JSON.parse(shoppingCarString);
-      shoppingCar.splice(indexToRemove, 1);
-      const updatedShoppingCarString = JSON.stringify(shoppingCar);
-      localStorage.setItem('shoppingCar', updatedShoppingCarString);
+    const shoppingCartString = localStorage.getItem('shoppingCart');
+    if (shoppingCartString) {
+      const shoppingCart = JSON.parse(shoppingCartString);
+      shoppingCart.splice(indexToRemove, 1);
+      const updatedShoppingCartString = JSON.stringify(shoppingCart);
+      localStorage.setItem('shoppingCart', updatedShoppingCartString);
       this.cartItems = this.shoppingCartCounter.refreshProduct();
       this.price = 0;
       for (let item of this.cartItems) {
@@ -70,7 +69,7 @@ export class ShoppingCartComponent {
   }
 
   public clearShoppingCart() {
-    localStorage.removeItem('shoppingCar');
+    localStorage.removeItem('shoppingCart');
     this.shoppingCartCounter.removeProducts();
     this.openSnackBar("¡Carrito de compras vaciado con éxito!");
     this.dialogRef.close();

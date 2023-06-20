@@ -1,13 +1,13 @@
-.subcategoria{
+.subcategoria {
   cursor: pointer;
 }
 
-.custom-accordion-container{
+.custom-accordion-container {
   position: sticky;
   top: 20px;
 }
 
-.custom-accordion-margin{
+.custom-accordion-margin {
   margin-bottom: 20px;
 }
 
@@ -24,7 +24,7 @@
   animation: computer-animation 10s infinite linear;
 }
 
-.un-selectable{
+.un-selectable {
   user-select: none;
 }
   
@@ -55,14 +55,14 @@
     }
 }
 
-.btnScroll{
+.btn-scroll {
   margin-top: 15px;
   width: 100%;
   transition: opacity 0.3s ease;
 }
 
 @media (min-width: 0px) and (max-width: 767.98px) {
-  .btnScroll {
+  .btn-scroll {
     position: fixed;
     width: 100px;
     bottom: 10px;

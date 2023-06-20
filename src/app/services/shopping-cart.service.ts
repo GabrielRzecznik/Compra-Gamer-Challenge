@@ -7,21 +7,21 @@ import { Product } from '../interfaces/product.interface';
 })
 
 export class ShoppingCartService {
-  private countProduct = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('shoppingCar') || '[]').length || 0);
+  private countProduct = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('shoppingCart') || '[]').length || 0);
 
   constructor() { }
 
   public addProduct(product: Product) {
-    const existingCartData = localStorage.getItem('shoppingCar');
-    let shoppingCar: Product[] = [];
+    const existingCartData = localStorage.getItem('shoppingCart');
+    let shoppingCart: Product[] = [];
   
     if (existingCartData) {
-      shoppingCar = JSON.parse(existingCartData);
+      shoppingCart = JSON.parse(existingCartData);
     }
 
-    shoppingCar.push(product);
-    localStorage.setItem('shoppingCar', JSON.stringify(shoppingCar));
-    this.countProduct.next(shoppingCar.length);
+    shoppingCart.push(product);
+    localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+    this.countProduct.next(shoppingCart.length);
   }
 
   public removeProducts() {
@@ -29,16 +29,16 @@ export class ShoppingCartService {
   }
 
   public refreshProduct() {
-    let shoppingCar: Product[] = [];
-    const existingCartData = localStorage.getItem('shoppingCar');
+    let shoppingCart: Product[] = [];
+    const existingCartData = localStorage.getItem('shoppingCart');
     if (existingCartData) {
-      shoppingCar = JSON.parse(existingCartData);
+      shoppingCart = JSON.parse(existingCartData);
     }
-    this.countProduct.next(shoppingCar.length);
-    if (shoppingCar.length === 0) {
-      localStorage.removeItem('shoppingCar');
+    this.countProduct.next(shoppingCart.length);
+    if (shoppingCart.length === 0) {
+      localStorage.removeItem('shoppingCart');
     }
-    return shoppingCar;
+    return shoppingCart;
   }
   
   public subscriptionProduct() {

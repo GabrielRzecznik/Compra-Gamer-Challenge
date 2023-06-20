@@ -27,7 +27,7 @@ export class NavComponent implements OnInit {
   }
 
   public openDialogShoppingCart(){
-    if (localStorage.getItem("shoppingCar") !== null) {
+    if (localStorage.getItem("shoppingCart") !== null) {
       const dialogRefShoppingCart = this.dialog.open(ShoppingCartComponent);
   
       dialogRefShoppingCart.afterClosed().subscribe(result => {

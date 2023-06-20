@@ -6,11 +6,11 @@
     text-align: center;
 }
 
-.center{
+.center {
     text-align: center;
 }
 
-.text-right{
+.text-right {
     position: absolute;
     right: 140px;
     top: 12px;
@@ -18,13 +18,13 @@
     font-weight: bold;
 }
 
-.btn-SC{
+.btn-shopping-cart {
     position: absolute;
     right: 8px;
     top: 8px;
 }
 
-.btn-clearProduct{
+.btn-clear-product {
     position: absolute;
     top: 50%;
     right: 25px;
@@ -43,7 +43,7 @@
     margin: 0;
 }
 
-.price{
+.price {
     margin-top: 3px;
     color: rgb(0, 140, 255);
     font-weight: bold;
@@ -89,13 +89,13 @@
       margin-left: 0px;
     }
 
-    .product-info{
+    .product-info {
         margin-top: 20px;
         margin-left: 0px;
         text-align: center;
     }
     
-    .shopping-cart{
+    .shopping-cart {
     margin: 5px;
     display: flex;
     justify-content: center;
@@ -103,7 +103,7 @@
     width: 100%;
     }
     
-    .btn-clearProduct{
+    .btn-clear-product {
         position: relative;
         margin-top: 15px;
         top: 0;

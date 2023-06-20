@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
   public noStock = true;
   private maxQuantityAllowed: Product[] = [];
   public buttonStatus: { [productId: string]: boolean } = {};
-  private shoppingCar: Product[] = [];
+  private shoppingCart: Product[] = [];
   public stockInCart = 0;
   public productValidity: boolean[] = [];
 
@@ -77,7 +77,7 @@ export class ProductsComponent implements OnInit {
   }
 
   public addProduct(product: Product, i: number) {
-    this.maxQuantityAllowed = JSON.parse(localStorage.getItem("shoppingCar")!) || [];
+    this.maxQuantityAllowed = JSON.parse(localStorage.getItem("shoppingCart")!) || [];
     this.stockInCart = 0;
 
     for (const item of this.maxQuantityAllowed) {
@@ -98,7 +98,7 @@ export class ProductsComponent implements OnInit {
   }
 
   public validateMaxQuantityAllowed(product: Product) {
-    this.maxQuantityAllowed = JSON.parse(localStorage.getItem("shoppingCar")!) || [];
+    this.maxQuantityAllowed = JSON.parse(localStorage.getItem("shoppingCart")!) || [];
     this.stockInCart = 0;
 
     for (const item of this.maxQuantityAllowed) {
@@ -135,10 +135,10 @@ export class ProductsComponent implements OnInit {
   public stockInCartCount(id_producto: number) {
     this.stockInCart = 0;
 
-    if (localStorage.getItem("shoppingCar")) {
-      if (localStorage.getItem("shoppingCar") !== "") {
-        this.shoppingCar = JSON.parse(localStorage.getItem("shoppingCar")!);
-        for (const item of this.shoppingCar) {
+    if (localStorage.getItem("shoppingCart")) {
+      if (localStorage.getItem("shoppingCart") !== "") {
+        this.shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")!);
+        for (const item of this.shoppingCart) {
           if (item.id_producto === id_producto) {
             this.stockInCart++;
           }
