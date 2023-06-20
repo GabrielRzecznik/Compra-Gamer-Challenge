@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Product } from 'src/app/interfaces/product.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,12 +18,13 @@ export class ShoppingCartComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ShoppingCartComponent>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private shoppingCartCounter: ShoppingCartService
   ) {}
 
   public ngOnInit() {
-    const localStorageData = localStorage.getItem('shoppingCar');
-    this.cartItems = localStorageData ? JSON.parse(localStorageData) : [];
+    //const localStorageData = localStorage.getItem('shoppingCar');
+    this.cartItems = this.shoppingCartCounter.refreshProduct();
 
     this.price = 0;
     for (let item of this.cartItems) {
@@ -37,11 +39,29 @@ export class ShoppingCartComponent {
     return integerPart.replace(/,/g, '.') + (formattedDecimalPart ? ',' + formattedDecimalPart : '');
   }
 
+  public removeProduct(indexToRemove: number){
+    const shoppingCarString = localStorage.getItem('shoppingCar');
+    if (shoppingCarString) {
+      const shoppingCar = JSON.parse(shoppingCarString);
+      shoppingCar.splice(indexToRemove, 1);
+      const updatedShoppingCarString = JSON.stringify(shoppingCar);
+      localStorage.setItem('shoppingCar', updatedShoppingCarString);
+      this.cartItems = this.shoppingCartCounter.refreshProduct();
+      this.price = 0;
+      for (let item of this.cartItems) {
+        this.price += (item.precio + (item.precio * (item.iva / 100))); 
+      }
+      if (this.cartItems.length === 0) {
+        this.dialogRef.close();
+      }
+    }
+  }
+
   public clearShoppingCart() {
     localStorage.removeItem('shoppingCar');
+    this.shoppingCartCounter.removeProducts();
     this.openSnackBar("¡Carrito de compras vaciado con éxito!");
     this.dialogRef.close();
-    
   }
 
   public openSnackBar(message: string) {

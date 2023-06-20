@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartCounterService } from 'src/app/services/shopping-cart-counter.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,13 +13,13 @@ export class NavComponent implements OnInit {
   public cartProductCount: number = 0;
 
   constructor(
-    private shoppingCartCounterService: ShoppingCartCounterService,
+    private shoppingCartService: ShoppingCartService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
 
   public ngOnInit() {
-    this.shoppingCartCounterService.subscriptionProduct().subscribe({
+    this.shoppingCartService.subscriptionProduct().subscribe({
       next:(counter) => {
         this.cartProductCount = counter;
       }

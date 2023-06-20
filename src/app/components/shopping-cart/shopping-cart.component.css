@@ -94,6 +94,8 @@
 }  
 
 .light-content {
+    min-width: 470px;
+    min-height: 130px;
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: #ffffff;

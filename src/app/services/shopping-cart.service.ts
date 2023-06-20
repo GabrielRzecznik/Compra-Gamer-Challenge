@@ -6,7 +6,7 @@ import { Product } from '../interfaces/product.interface';
   providedIn: 'root'
 })
 
-export class ShoppingCartCounterService {
+export class ShoppingCartService {
   private countProduct = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('shoppingCar') || '[]').length || 0);
 
   constructor() { }
@@ -25,8 +25,21 @@ export class ShoppingCartCounterService {
   }
 
   public removeProducts() {
-    localStorage.removeItem('shoppingCar');
     this.countProduct.next(0);
+  }
+
+  public refreshProduct() {
+    let shoppingCar: Product[] = [];
+    const existingCartData = localStorage.getItem('shoppingCar');
+    if (existingCartData) {
+      shoppingCar = JSON.parse(existingCartData);
+    }
+    this.countProduct.next(shoppingCar.length);
+    if (shoppingCar.length === 0) {
+      localStorage.removeItem('shoppingCar');
+    }
+    console.log(shoppingCar);
+    return shoppingCar;
   }
   
   public subscriptionProduct() {

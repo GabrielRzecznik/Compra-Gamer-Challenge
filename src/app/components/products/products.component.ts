@@ -3,7 +3,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product.interface';
 import { ApiCompraGamerService } from 'src/app/services/api-compra-gamer.service';
 import { FilterService } from 'src/app/services/filter.service';
-import { ShoppingCartCounterService } from 'src/app/services/shopping-cart-counter.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private apiCompraGamerService: ApiCompraGamerService,
     private filterService: FilterService,
-    private shoppingCartCounterService: ShoppingCartCounterService,
+    private shoppingCartService: ShoppingCartService,
     private snackBar: MatSnackBar
   ) { }
 
@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit {
     }
 
     if (product.vendible > this.stockInCart) {
-      this.shoppingCartCounterService.addProduct(product);
+      this.shoppingCartService.addProduct(product);
       this.openSnackBar(product.nombre + ' se agrego al carrito de compras');
 
       if (product.vendible === (this.stockInCart + 1)) {
