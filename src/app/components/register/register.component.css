@@ -9,19 +9,6 @@
     justify-content: center;
 }
 
-.margin-bottom{
-    margin-bottom: 10px;
-}
-
-.width-full {
-    width: 100%;
-}
-
-.record-visibility{
-    display: none;
-    background-color: aqua;
-}
-
 .computer-border::after {
     content: "";
     position: absolute;

@@ -8,10 +8,6 @@
     padding: 10px;
 }
 
-.nav-icons{
-    color: white;
-}
-
 .button-right{
     margin-top: 8px;
     margin-left: 10px;
@@ -32,23 +28,6 @@
     right: 0;
     height: 5px;
     animation: computer-border-animation 10s infinite linear;
-  }
-  
-.example-card {
-    max-width: 400px;
-  }
-  
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-}
-
-.spacing{
-    margin-top: 45px;
-}
-
-.font-style{
-  font-family: 'Poppins', sans-serif;
 }
 
 .session-text{
