@@ -9,7 +9,9 @@ import { ShoppingCartCounterService } from 'src/app/services/shopping-cart-count
 export class NavComponent implements OnInit {
   cartProductCount: number = 0;
 
-  constructor(private shoppingCartCounterService: ShoppingCartCounterService) {}
+  constructor(
+    private shoppingCartCounterService: ShoppingCartCounterService
+  ) {}
 
   public ngOnInit() {
     this.shoppingCartCounterService.subscriptionProduct().subscribe({

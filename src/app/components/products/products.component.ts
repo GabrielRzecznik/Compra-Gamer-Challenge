@@ -173,7 +173,7 @@ export class ProductsComponent implements OnInit {
   public openSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       verticalPosition: "top",
-      duration: 3000
+      duration: 4000
     });
   }
 }

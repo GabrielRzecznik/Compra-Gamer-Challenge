@@ -14,7 +14,9 @@ export class SubcategoryBannerComponent {
   public name: string = "Destacado";
   public imgCategoria: string = "https://imagenes.compragamer.com/bannerSubcategoria/subcategoria_default.jpg";
   
-  constructor(private FilterService: FilterService) { }
+  constructor(
+    private FilterService: FilterService
+  ) { }
 
   public ngOnInit() {
     this.getFilter();
