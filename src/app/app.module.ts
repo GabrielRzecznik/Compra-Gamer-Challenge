@@ -12,10 +12,11 @@ import { NavComponent } from './components/nav/nav.component';
 //Material
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';//Nav
-import { MatDialogModule } from '@angular/material/dialog';//Modal
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -27,14 +28,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,11 @@ export class RegisterComponent {
   public isLoggedIn: boolean = false;
   public user!: User;
 
-  constructor(public dialogRef: MatDialogRef<RegisterComponent>, private userDataService: UserDataService){}
+  constructor(
+    public dialogRef: MatDialogRef<RegisterComponent>,
+    private userDataService: UserDataService,
+    private snackBar: MatSnackBar
+  ) {}
 
   closeDialogo(): void {
     this.dialogRef.close();
@@ -74,17 +79,20 @@ export class RegisterComponent {
       
     if (this.validateForm()) {
       localStorage.setItem('user', JSON.stringify(this.user));
+      this.openSnackBar('¡Registro exitoso! Gracias por completar todos los campos requeridos correctamente. Su información ha sido enviada con éxito.');
 
       this.userDataService.changeUser(this.user);
       this.clearForm();
       this.closeDialogo();
+    }else{
+      this.openSnackBar('ERROR: Por favor, revise los campos antes de enviar el formulario. Asegúrese de completar toda la información requerida de forma válida. ¡Gracias!');
     }
     
   }
 
   public validateForm(): boolean {
     if (this.nombreFormControl.value === "" || this.apellidoFormControl.value === "" || this.DNIFormControl.value === "" || this.emailFormControl.value === "" || this.telefonoFormControl.value === "" || this.passwordFormControl.value === "") {
-      alert('Por favor, complete todos los campos antes de enviar el formulario');
+      this.openSnackBar('ERROR: Por favor, complete todos los campos antes de enviar el formulario. ¡Gracias!');
       return false;
     }else if (
       this.nombreFormControl.invalid || !this.nombreFormControl.touched ||
@@ -113,5 +121,12 @@ export class RegisterComponent {
     this.telefonoFormControl.reset();
     this.emailFormControl.reset();
     this.passwordFormControl.reset();
+  }
+
+  public openSnackBar(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      verticalPosition: "top",
+      duration: 5000
+    });
   }
 }
