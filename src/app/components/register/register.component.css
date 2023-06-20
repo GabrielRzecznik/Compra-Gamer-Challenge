@@ -1,0 +1,73 @@
+.button-register{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.center{
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+}
+
+.computer-border::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    animation: computer-border-animation 10s infinite linear;
+}
+
+.spacing{
+  margin-top: 45px;
+}
+
+.example-full-width {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.top-spacing{
+  margin-top: 20px;
+}
+
+.font-style{
+  font-family: 'Poppins', sans-serif;
+}
+
+input{
+  font-family: 'Poppins', sans-serif;
+}
+
+.userInfo{
+  width: 300px;
+  margin-bottom: 25px;
+}
+
+@keyframes computer-border-animation {
+    0% {
+      background-color: red;
+    }
+    14% {
+      background-color: orange;
+    }
+    28% {
+      background-color: yellow;
+    }
+    42% {
+      background-color: rgb(123, 231, 0);
+    }
+    57% {
+      background-color: rgb(0, 110, 255);
+    }
+    71% {
+      background-color: rgb(149, 70, 214);
+    }
+    85% {
+      background-color: violet;
+    }
+    100% {
+      background-color: red;
+    }
+}

@@ -1,0 +1,97 @@
+<h2 class="center top-spacing font-style">{{ title }}</h2>
+
+<span class="computer-border">
+  <mat-dialog-content class="mat-typography">
+    <span *ngIf="!showRegister && !isLoggedIn">
+      <button class="font-style button-register" mat-button (click)="visibilityFromRegister()">Registrarse</button>
+      <button class="font-style button-register" mat-button mat-dialog-close [disabled]="true">Iniciar sesión</button>
+      <button class="font-style button-register" mat-button mat-dialog-close>Cancelar</button>
+    </span>
+    <span *ngIf="!showRegister && isLoggedIn">
+      <div class="userInfo font-style">
+        Nombre: {{ user.nombre }} <br>
+        Apellido: {{ user.apellido }} <br>
+        Email: {{ user.email }} <br>
+        DNI: {{ user.dni }} <br>
+        Teléfono: {{ user.telefono }}
+      </div>
+      <button class="font-style button-register" mat-flat-button mat-dialog-close color="warn" (click)="loggedOut()">Cerrar sesión</button>
+      <button class="font-style button-register" mat-button mat-dialog-close>Atrás</button>
+    </span>
+    <span *ngIf="showRegister">
+      <form (ngSubmit)="submitForm()">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="example-full-width mat-accent">
+              <mat-label>Nombre</mat-label>
+              <input matInput [formControl]="nombreFormControl" placeholder="Ingrese su nombre">
+              <mat-error *ngIf="nombreFormControl.hasError('required')">
+                El campo nombre es <strong>obligatorio</strong>.
+              </mat-error>
+              <mat-error *ngIf="nombreFormControl.hasError('pattern') && !nombreFormControl.hasError('required')">
+                Por favor, ingrese solo letras en el campo nombre.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field class="example-full-width mat-accent">
+              <mat-label>Apellido</mat-label>
+              <input matInput [formControl]="apellidoFormControl" placeholder="Ingrese su apellido">
+              <mat-error *ngIf="apellidoFormControl.hasError('required')">
+                El campo apellido es <strong>obligatorio</strong>.
+              </mat-error>
+              <mat-error *ngIf="apellidoFormControl.hasError('pattern') && !apellidoFormControl.hasError('required')">
+                Por favor, ingrese solo letras en el campo apellido.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-form-field class="example-full-width mat-accent">
+          <mat-label>DNI</mat-label>
+          <input matInput [formControl]="DNIFormControl" placeholder="Ingrese su DNI">
+          <mat-error *ngIf="DNIFormControl.hasError('required')">
+            El campo DNI es <strong>obligatorio</strong>.
+          </mat-error>
+          <mat-error *ngIf="DNIFormControl.hasError('pattern') && !DNIFormControl.hasError('required')">
+            Por favor, ingrese su DNI en formato valido.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width mat-accent">
+          <mat-label>Email</mat-label>
+          <input color="accent" matInput type="email" placeholder="Ingrese su email" [formControl]="emailFormControl" required autocomplete="current-email">
+          <mat-error *ngIf="(emailFormControl.hasError('email') || emailFormControl.hasError('pattern')) && !emailFormControl.hasError('required')">
+            Por favor, ingrese un correo electrónico válido.
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            El correo electrónico es un campo <strong>obligatorio</strong>.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width mat-accent">
+          <mat-label>Teléfono</mat-label>
+          <input matInput [formControl]="telefonoFormControl" placeholder="Ingrese su teléfono">
+          <mat-error *ngIf="telefonoFormControl.hasError('required')">
+            El campo teléfono es <strong>obligatorio</strong>.
+          </mat-error>
+          <mat-error *ngIf="telefonoFormControl.hasError('pattern') && !telefonoFormControl.hasError('required')">
+            Por favor, ingrese su teléfono en formato valido.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width mat-accent">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" placeholder="Ingrese una contraseña" autocomplete="current-password">
+          <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            El campo contraseña es <strong>obligatorio</strong>.
+          </mat-error>
+          <mat-error *ngIf="passwordFormControl.hasError('pattern') && !passwordFormControl.hasError('required')">
+            La contraseña debe contener al menos una letra mayúscula y al menos un número.
+          </mat-error>
+        </mat-form-field>
+        <button class="font-style button-register" mat-button type="submit">Registrarse</button>
+      </form>      
+    </span>
+    <br>
+  </mat-dialog-content>
+</span>

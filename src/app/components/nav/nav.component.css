@@ -39,6 +39,10 @@
     height: 5px;
     animation: computer-border-animation 10s infinite linear;
 }
+
+.session-text{
+  margin-left: 10px;
+}
   
 @keyframes computer-border-animation {
     0% {
@@ -71,5 +75,9 @@
   .logo-cg {
     margin-top: 9px;
     height: 30px;
+  }
+
+  .session-text{
+    display: none;
   }
 }

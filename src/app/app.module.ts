@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -10,6 +11,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { SubcategoriesComponent } from './components/subcategories/subcategories.component';
 import { SubcategoryBannerComponent } from './components/subcategory-banner/subcategory-banner.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { RegisterComponent } from './components/register/register.component';
 
 //Material
 import { MatIconModule } from '@angular/material/icon';
@@ -24,32 +26,40 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AppComponent,
+
     ProductsComponent,
     NavComponent,
     SubcategoriesComponent,
     SubcategoryBannerComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatChipsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
     MatCardModule,
     MatExpansionModule,
     MatBadgeModule,
-    MatSnackBarModule,
-    MatDialogModule,
     MatDividerModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
