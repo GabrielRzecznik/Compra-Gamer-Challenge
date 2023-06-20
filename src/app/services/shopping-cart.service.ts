@@ -38,7 +38,6 @@ export class ShoppingCartService {
     if (shoppingCar.length === 0) {
       localStorage.removeItem('shoppingCar');
     }
-    console.log(shoppingCar);
     return shoppingCar;
   }
   

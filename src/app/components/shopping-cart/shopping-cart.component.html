@@ -1,5 +1,20 @@
 <h2 mat-dialog-title>Carrito de Compras</h2>
 
+<button *ngIf="isHidden" class="btn-menu" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon class="white-icon">more_vert</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="clearShoppingCart()">
+    <mat-icon>delete</mat-icon>
+    Vaciar carrito
+  </button>
+  <button mat-menu-item mat-dialog-close>
+    <mat-icon>close</mat-icon>
+    Cerrar
+  </button>
+</mat-menu>
+
 <mat-dialog-content class="light-content">
     <!--Listado de Productos del Carrito de Compras-->
     <span *ngFor="let item of cartItems; let i = index">
@@ -32,17 +47,16 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <h3 class="text-right">
-        Total: $ {{ formatPrice(this.price) }}
-    </h3>
-    <button mat-flat-button color="warn" (click)="clearShoppingCart()">
-        <mat-icon>delete</mat-icon>
-        Vaciar carrito
+    <button mat-flat-button color="warn" *ngIf="!isHidden" (click)="clearShoppingCart()">
+      <mat-icon>delete</mat-icon>
+      Vaciar carrito
     </button>
-    <button mat-flat-button mat-dialog-close cdkFocusInitial>
+    <button mat-flat-button mat-dialog-close cdkFocusInitial *ngIf="!isHidden">
         Cerrar
     </button>
-
+    <h3 class="text-right">
+      Total: $ {{ formatPrice(this.price) }}
+    </h3>
     <button class="btn-SC" mat-flat-button color="primary" [mat-dialog-close]="true" disabled>
         <mat-icon>shopping_cart</mat-icon>
         Comprar

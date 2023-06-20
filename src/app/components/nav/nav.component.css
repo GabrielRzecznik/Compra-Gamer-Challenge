@@ -1,4 +1,4 @@
-.logo_cg{
+.logo-CG{
     height: 50px;
 }
 
@@ -76,7 +76,8 @@
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
-  .logo_cg{
+  .logo-CG {
+    margin-top: 9px;
     height: 30px;
   }
 }

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Product } from 'src/app/interfaces/product.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,12 +16,23 @@ export class ShoppingCartComponent {
   public imgURL = "https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_";
   public imgJpg = ".jpg";
   public price: number = 0;
+  private isExtraSmallScreen: boolean = false;
+  private isSmallScreen: boolean = false;
+  public isHidden: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<ShoppingCartComponent>,
     private snackBar: MatSnackBar,
-    private shoppingCartCounter: ShoppingCartService
-  ) {}
+    private shoppingCartCounter: ShoppingCartService,
+    private breakpointObserver: BreakpointObserver
+  ) {
+    this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small])
+      .subscribe(result => {
+        this.isExtraSmallScreen = result.breakpoints[Breakpoints.XSmall];
+        this.isSmallScreen = result.breakpoints[Breakpoints.Small];
+        this.isHidden = this.isExtraSmallScreen || this.isSmallScreen;
+    });
+  }
 
   public ngOnInit() {
     //const localStorageData = localStorage.getItem('shoppingCar');
