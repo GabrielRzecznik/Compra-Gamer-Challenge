@@ -30,6 +30,9 @@
                 <div class="col-lg-8">
                   <div class="product-info">
                     <h3 class="product-name">{{ item.nombre }}</h3>
+                    <ng-container *ngFor="let subcategory of subcategories">
+                      <span *ngIf="subcategory.id === item.id_subcategoria">Subcategoría: {{ subcategory.nombre }}</span> 
+                    </ng-container>
                     <h4 class="price">$ {{ formatPrice(item.precio + (item.precio * (item.iva / 100))) }}</h4>
                   </div>
                 </div>
