@@ -50,7 +50,7 @@ export class ShoppingCartComponent {
     return integerPart.replace(/,/g, '.') + (formattedDecimalPart ? ',' + formattedDecimalPart : '');
   }
 
-  public removeProduct(indexToRemove: number){
+  public removeProduct(indexToRemove: number, nameProduct: string){
     const shoppingCartString = localStorage.getItem('shoppingCart');
     if (shoppingCartString) {
       const shoppingCart = JSON.parse(shoppingCartString);
@@ -59,6 +59,7 @@ export class ShoppingCartComponent {
       localStorage.setItem('shoppingCart', updatedShoppingCartString);
       this.cartItems = this.shoppingCartCounter.refreshProduct();
       this.price = 0;
+      this.openSnackBar(`¡Producto ${nameProduct} removido con éxito!`);
       for (let item of this.cartItems) {
         this.price += (item.precio + (item.precio * (item.iva / 100))); 
       }

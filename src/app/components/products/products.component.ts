@@ -88,7 +88,7 @@ export class ProductsComponent implements OnInit {
 
     if (product.vendible > this.stockInCart) {
       this.shoppingCartService.addProduct(product);
-      this.openSnackBar(product.nombre + ' se agrego al carrito de compras');
+      this.openSnackBar(`${product.nombre} se agregó al carrito de compras`);
 
       if (product.vendible === (this.stockInCart + 1)) {
         this.productValidity[i] = true;
