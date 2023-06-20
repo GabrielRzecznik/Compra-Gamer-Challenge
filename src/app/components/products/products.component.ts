@@ -5,6 +5,7 @@ import { ApiCompraGamerService } from 'src/app/services/api-compra-gamer.service
 import { FilterService } from 'src/app/services/filter.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SubCategory } from 'src/app/interfaces/subCategory.interface';
 
 @Component({
   selector: 'app-products',
@@ -14,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProductsComponent implements OnInit {
   public products: Product[] = [];
   private productsFilter: Product[] = [];
+  public subcategories: SubCategory[] = [];
   private id_subCategoria: number = 0;
   public nameCategoria: string = "";
   public existence = true;
@@ -25,6 +27,7 @@ export class ProductsComponent implements OnInit {
   private shoppingCart: Product[] = [];
   public stockInCart = 0;
   public productValidity: boolean[] = [];
+  public subcategoryName: string = "";
 
   constructor(
     private apiCompraGamerService: ApiCompraGamerService,
@@ -36,6 +39,15 @@ export class ProductsComponent implements OnInit {
   public ngOnInit() {
     this.getProducts();
     this.getFilter();
+
+    this.apiCompraGamerService.getSubcategories().subscribe(
+      (subcategories) => {
+        this.subcategories = subcategories;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   private getProducts() {
@@ -135,13 +147,11 @@ export class ProductsComponent implements OnInit {
   public stockInCartCount(id_producto: number) {
     this.stockInCart = 0;
 
-    if (localStorage.getItem("shoppingCart")) {
-      if (localStorage.getItem("shoppingCart") !== "") {
-        this.shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")!);
-        for (const item of this.shoppingCart) {
-          if (item.id_producto === id_producto) {
-            this.stockInCart++;
-          }
+    if (localStorage.getItem("shoppingCart") && localStorage.getItem("shoppingCart") !== "") {
+      this.shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")!);
+      for (const item of this.shoppingCart) {
+        if (item.id_producto === id_producto) {
+          this.stockInCart++;
         }
       }
     }

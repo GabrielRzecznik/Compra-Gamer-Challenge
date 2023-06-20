@@ -4,7 +4,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Product } from 'src/app/interfaces/product.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { ApiCompraGamerService } from 'src/app/services/api-compra-gamer.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { SubCategory } from 'src/app/interfaces/subCategory.interface';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,6 +15,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class ShoppingCartComponent {
   public cartItems!: Product[];
+  public subcategories: SubCategory[] = [];
   public imgURL = "https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_";
   public imgJpg = ".jpg";
   public price: number = 0;
@@ -24,6 +27,7 @@ export class ShoppingCartComponent {
     public dialogRef: MatDialogRef<ShoppingCartComponent>,
     private snackBar: MatSnackBar,
     private shoppingCartCounter: ShoppingCartService,
+    private apiCompraGamerService: ApiCompraGamerService,
     private breakpointObserver: BreakpointObserver
   ) {
     this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small])
@@ -41,6 +45,15 @@ export class ShoppingCartComponent {
     for (let item of this.cartItems) {
       this.price += (item.precio + (item.precio * (item.iva / 100))); 
     }
+
+    this.apiCompraGamerService.getSubcategories().subscribe(
+      (subcategories) => {
+        this.subcategories = subcategories;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   public formatPrice(precio: number): string {
