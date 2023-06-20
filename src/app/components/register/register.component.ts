@@ -46,6 +46,7 @@ export class RegisterComponent {
   public loggedOut(){
     this.userDataService.removeUser();
     localStorage.clear();
+    this.openSnackBar('¡Cierre de sesión exitoso! Ha finalizado la sesión correctamente. Gracias por su visita a nuestro sitio web.');
   }
 
   public nombreFormControl = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]);
