@@ -24,6 +24,11 @@ export class ShoppingCartCounterService {
     this.countProduct.next(shoppingCar.length);
   }
 
+  public removeProducts() {
+    localStorage.removeItem('shoppingCar');
+    this.countProduct.next(0);
+  }
+  
   public subscriptionProduct() {
     return this.countProduct.asObservable();
   }

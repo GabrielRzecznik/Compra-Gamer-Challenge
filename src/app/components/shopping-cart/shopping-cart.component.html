@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Carrito de Compras</h2>
+
+<mat-dialog-content class="light-content">
+    <!--Listado de Productos del Carrito de Compras-->
+    <span *ngFor="let item of cartItems; let i = index">
+    <mat-card class="card">
+        <div class="card-content">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-1 center">
+                  <div class="image-container">
+                    <img class="hidden" src="{{ imgURL+item.imagenes[0].nombre+imgJpg }}" alt="Imagen del producto">
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="product-info">
+                    <h3 class="product-name">{{ item.nombre }}</h3>
+                    <h4 class="price">$ {{ formatPrice(item.precio + (item.precio * (item.iva / 100))) }}</h4>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <!--<button class="btn-clearProduct" mat-flat-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                    Eliminar
+                </button>-->
+                </div>
+              </div>
+            </div>
+          </div>
+    </mat-card> 
+    </span>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <h3 class="text-right">
+        Total: $ {{ formatPrice(this.price) }}
+    </h3>
+    <button mat-flat-button color="warn" (click)="clearShoppingCart()">
+        <mat-icon>delete</mat-icon>
+        Vaciar carrito
+    </button>
+    <button mat-flat-button mat-dialog-close cdkFocusInitial>
+        Cerrar
+    </button>
+
+    <button class="btn-SC" mat-flat-button color="primary" [mat-dialog-close]="true" disabled>
+        <mat-icon>shopping_cart</mat-icon>
+        Comprar
+    </button>
+</mat-dialog-actions>

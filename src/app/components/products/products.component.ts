@@ -93,8 +93,6 @@ export class ProductsComponent implements OnInit {
       if (product.vendible === (this.stockInCart + 1)) {
         this.productValidity[i] = true;
       }
-    } else {
-      this.openSnackBar('ERROR: Solamente se permite agregar hasta ' + product.vendible + ' uni. de ' + product.nombre + '. Siempre en cuanto tengamos existencias en stock');
     }
     this.stockInCart = 0;
   }
@@ -127,7 +125,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  public formatPrecio(precio: number): string {
+  public formatPrice(precio: number): string {
     const formattedPrecio = formatNumber(precio, 'en-US', '1.2-2');
     const [integerPart, decimalPart] = formattedPrecio.split('.');
     const formattedDecimalPart = decimalPart === '00' ? '' : (decimalPart.length === 1 ? decimalPart + '0' : decimalPart);

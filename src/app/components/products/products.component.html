@@ -30,13 +30,13 @@
             <div class="col-lg-7">
               <div class="product-info">
                 <h3 class="product-name">{{ product.nombre }}</h3>
-                <p>Precio: $ {{ formatPrecio(product.precio + (product.precio * (product.iva / 100))) }}</p>
+                <h4 class="price">$ {{ formatPrice(product.precio + (product.precio * (product.iva / 100))) }}</h4>
               </div>
             </div>
             <div class="col-lg-3">
               <span class="shopping-cart">
-                <button class="btn-shopping-cart" mat-raised-button matBadge="{{ stockInCartCount(product.id_producto) !== 0 ? stockInCartCount(product.id_producto) : '' }}" matBadgeColor="warn" (click)="addProduct(product, i)" [disabled]="productValidity[i]">
-                  <mat-icon matBadgePosition="above after">shopping_cart</mat-icon>
+                <button class="btn-shopping-cart" mat-raised-button matBadge="{{ stockInCartCount(product.id_producto) !== 0 ? stockInCartCount(product.id_producto) : '' }}" matBadgeColor="warn" (click)="addProduct(product, i)" [disabled]="productValidity[i] && (stockInCartCount(product.id_producto) !== 0)">
+                  <mat-icon matBadgePosition="above after">add_shopping_cart</mat-icon>
                   <span class="button-flat-text">
                     Agregar
                   </span>

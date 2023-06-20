@@ -3,7 +3,7 @@
         <img class="logo_cg" src="https://compragamer.net/assets/img/logo-fix.png" alt="Logo">
         
         <span class="example-button-row position-relative button-right button-margin">
-            <button class="font-style" mat-raised-button matBadge="{{ cartProductCount !== 0 ? cartProductCount : '' }}" matBadgeColor="warn">
+            <button class="font-style" mat-raised-button matBadge="{{ cartProductCount !== 0 ? cartProductCount : '' }}" matBadgeColor="warn" (click)="openDialogShoppingCart()">
                 <mat-icon class="nav-icons nav-icon-shopping_cart" matBadgePosition="above after" style="margin-right: -4px;">shopping_cart</mat-icon>
             </button>
         </span>
